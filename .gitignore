@@ -1,0 +1,34 @@
+# Qt-specific build files
+*.pro.user
+*.qbs.user
+*.pro.user.*
+*.qbs.user.*
+*.qmlproject.user
+*.creator.user
+*.creator.user.*
+*.creator.shared.*
+
+# Build folders
+build-*/
+*.obj
+*.o
+*.exe
+*.dll
+*.so
+*.a
+*.lib
+
+# Qt Creator specific
+.idea/
+.vscode/
+.DS_Store
+
+# Temporary files
+*.tmp
+*.log
+*.bak
+*.swp
+
+# System files
+Thumbs.db
+desktop.ini

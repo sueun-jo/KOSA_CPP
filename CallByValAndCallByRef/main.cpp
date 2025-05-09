@@ -71,7 +71,7 @@ int main (void)
 
 #endif
 
-#if ON
+#if OFF
 //레퍼런스 변수를 이용한 call by ref
 void Swap (int &x, int &y){
     int temp = x;
@@ -85,6 +85,37 @@ int main (){
     cout << "Swap함수 호출 전의 a와 b " << a  << " " << b << endl;
     Swap (a, b);
     cout << "Swap함수 호출 후의 a와 b " << a  << " " << b << endl;
+    return 0;
+}
+#endif
+
+/* call by ref with class */
+#if ON
+class Restaurant {
+public:
+    int Steak; //스테이크 가격
+};
+
+class Minho{
+public:
+    int Eat(int &);
+};
+
+int Minho::Eat(int &SteakPrice){
+    SteakPrice = 100000; // 민호가 10만원짜리 스테이크를 먹었다고 거짓말
+    cout << "민호는 먹는다" << endl;
+    return SteakPrice;
+}
+
+int main(void){
+    Minho minho;
+    Restaurant restaurant;
+
+    //레스토랑에서 민호에게 준 스테이크는 8만원
+    restaurant.Steak = 80000;
+    cout << "민호는" << minho.Eat(restaurant.Steak) <<"원짜리 스테이크를 먹었다고 거짓말을 했다" << endl;
+    cout << "레스토랑은 민호가 " << restaurant.Steak << "원짜리 스테이크를 먹었다고 알고 있다." << endl;
+
     return 0;
 }
 #endif

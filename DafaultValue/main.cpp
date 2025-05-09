@@ -1,6 +1,11 @@
 #include <iostream>
 using namespace std;
 
+#define ON 1
+#define OFF 0
+
+/* Default Value.cpp */
+#if OFF
 int BoxVolume(int length, int width=1, int height=1);
 
 int main()
@@ -15,3 +20,5 @@ int main()
 int BoxVolume(int length, int width, int height){
     return length*width*height;
 }
+
+#endif

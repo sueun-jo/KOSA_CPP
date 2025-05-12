@@ -33,7 +33,7 @@ int Compare (const char str1[], const char str2[]){
             return -1;
         else;
     }
-
+-
     if (str1[i]=='\0' && str2[i]!='\0') return -1;
 
     else if (str1[i]!='\0' && str2[i]!='\0') return 1;

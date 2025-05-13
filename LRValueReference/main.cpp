@@ -82,7 +82,7 @@ int main(){
 }
 #endif
 
-#if ON
+#if OFF
 
 int main(){
     string name1 = "allen";
@@ -104,5 +104,60 @@ int main(){
 
 }
 
+#endif
+
+#if OFF
+
+class MyArray{
+private:
+    int num;
+
+public:
+    MyArray(int n){
+        cout << "생성자 호출" << endl;
+        num = n;
+    }
+
+    MyArray(const MyArray& copy){
+        cout << "복사 생성자 호출" << endl;
+        num = copy.num;
+    }
+    MyArray(MyArray&& move){
+        cout << "이동생성자 호출" <<endl;
+        num= move.num;
+        move.num = 0;
+    }
+
+    MyArray operator = (MyArray&& move){ //이동대입 연산자
+        cout << "이동 대입 연산자 호출" << endl;
+        swap(num, move.num);
+        return *this;
+    }
+
+    int getNum(){
+        return num;
+    }
+};
+
+MyArray CreateMyArray(){
+    return MyArray(100);
+}
+
+int main(){
+    MyArray ar1(10);
+    MyArray ar2(ar1);
+
+    cout << "ar1.getNum: " << ar1.getNum() << endl;
+    cout << "ar2.getNum: " << ar1.getNum() << endl;
+
+    ar2 = CreateMyArray();
+    cout << "ar1.getNum: " << ar1.getNum() << endl;
+    cout << "ar1.getNum: " << ar2.getNum() << endl;
+
+    MyArray ar3(std::move(ar1));
+    cout << "ar1.getNum: " << ar1.getNum() << endl;
+    cout << "ar1.getNum: " << ar3.getNum() << endl;
+
+}
 
 #endif

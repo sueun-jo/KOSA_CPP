@@ -40,7 +40,7 @@ int main()
 }
 #endif
 
-#if ON
+#if OFF /*복사 생성자 호출 case 예제 1*/
 
 class SoSimple{
 private:
@@ -79,4 +79,101 @@ int main()
     return 0;
 }
 
+#endif
+
+#if OFF /*복사 생성자 호출 확인 2*/
+class SoSimple{
+private:
+    int num;
+
+public:
+    SoSimple(int n) : num(n)
+    {
+        //empty
+    }
+
+    SoSimple(const SoSimple &copy) : num(copy.num)
+    {
+        cout << "Called SoSimple(const SoSimple &copy)" << endl;
+    }
+
+    SoSimple& AddNum(int n){
+        num += n;
+        return *this;
+    }
+
+    void ShowData()
+    {
+        cout << "num: "<< num << endl;
+    }
+
+};
+
+SoSimple SimpleFuncObj(SoSimple ob){
+    cout << "return 이전" << endl;
+    return ob;
+}
+
+int main()
+{
+    SoSimple obj(7);
+    SimpleFuncObj(obj).AddNum(30).ShowData();
+    obj.ShowData();
+
+    return 0;
+}
+#endif
+
+#if ON /*깊은 복사 예제*/
+
+class MyProfile{
+private:
+    int* ptrNum;
+    int zipcode;
+
+public:
+    MyProfile(int n , int zc){
+        ptrNum = new int;
+        *ptrNum = n;
+        zipcode = zc;
+    }
+
+    MyProfile(const MyProfile& obj) : zipcode (obj.zipcode){
+        ptrNum = new int;
+        *ptrNum = *obj.ptrNum;
+        cout << "Copy Constructor" << endl;
+    }
+
+    ~MyProfile(){
+        delete ptrNum;
+        cout << "Destructor" << endl;
+    }
+
+    void setProfile(int n , int zc){
+        *ptrNum = n;
+        zipcode = zc;
+    }
+
+    void getProfile(){
+        cout << "ptrNum: " << ptrNum << endl;
+        cout << "*ptrNum: " << *ptrNum << endl;
+        cout << "zipcode: " << zipcode << endl;
+        cout << endl;
+    }
+
+};
+
+int main(void){
+
+    MyProfile profile1 (10, 90031);
+    profile1.getProfile();
+
+    MyProfile profile2(profile1); //MyProfile profile2 = profile1;
+    profile1.getProfile();
+    profile2.getProfile();
+    profile2.setProfile(500, 90000);
+    profile1.getProfile();
+    profile2.getProfile();
+    return 0;
+}
 #endif

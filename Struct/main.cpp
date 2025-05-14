@@ -32,7 +32,7 @@ int main(void){
 
 #endif
 
-#if ON
+#if OFF
 class Chulsoo
 {
 public:

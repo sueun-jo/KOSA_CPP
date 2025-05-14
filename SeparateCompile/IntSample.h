@@ -3,6 +3,7 @@
 
 #include <iostream>
 using namespace std;
+//클래스 선언은 헤더파일
 
 class IntSample{
 public :

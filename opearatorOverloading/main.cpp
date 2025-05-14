@@ -92,7 +92,7 @@ Min operator+ (const Min& minObj1, const Min& minObj2){
 }
 #endif
 
-#if ON
+#if OFF
 #include <iostream>
 using namespace std;
 

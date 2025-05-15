@@ -1,3 +1,7 @@
+#define ON 1
+#define OFF 0
+
+#if OFF
 #include <iostream>
 using namespace std;
 
@@ -44,3 +48,24 @@ int main()
     cout << "Hello World!" << endl;
     return 0;
 }
+
+#endif
+
+#if OFF
+#include <iostream>
+
+int main(void){
+    std :: cout << "sueun" << std :: endl;
+    return 0;
+}
+
+#endif
+
+#if ON
+#include "ConTest.h"
+
+int main(){
+    CON2 *p_TEST = new CON2();
+    delete p_TEST;
+}
+#endif

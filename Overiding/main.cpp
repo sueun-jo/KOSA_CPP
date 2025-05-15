@@ -3,17 +3,17 @@ using namespace std;
 
 class First{
 public:
-    void MyFunc() { cout << "First Func" << endl; }
+    virtual void MyFunc() { cout << "First Func" << endl; }
 };
 
 class Second  : public First{
 public:
-    void MyFunc() { cout << "Second Func" << endl; }
+    virtual void MyFunc() { cout << "Second Func" << endl; }
 };
 
 class Third : public Second{
 public:
-    void MyFunc() {cout << "Third Func" << endl; }
+    virtual void MyFunc() {cout << "Third Func" << endl; }
 };
 
 int main()

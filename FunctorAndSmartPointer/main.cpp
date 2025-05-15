@@ -1,7 +1,7 @@
 #define ON 1
 #define OFF 0
 
-#if ON
+#if OFF
 /* Functor 예제*/
 #include <iostream>
 using namespace std;
@@ -31,5 +31,39 @@ int main()
 }
 #endif
 
-#if OFF
+#if ON
+/* smart pointer */
+#include <iostream>
+#include <memory>
+using namespace std;
+class Sueun{
+private:
+    int age;
+public:
+    Sueun(int age) : age(age) {
+        cout << "Sueun::Sueun(age) 생성자 완료" << endl;
+    }
+    Sueun() {
+        cout << "Sueun::Sueun() 생성자 완료" << endl;
+    }
+    ~Sueun(){
+        cout << "Sueun::~Sueun() 소멸자" << endl;
+    }
+    void introduce();
+};
+
+int main(void){
+    Sueun * sueunPtr2 = new Sueun(26);
+    sueunPtr2->introduce();
+    delete sueunPtr2;
+
+    //auto_ptr은 C++11 이후 삭제, C++98(클래식 c++)은 컴파일 되겟지용
+    // auto_ptr<Sueun> sueunSmptr (new Sueun(26));
+    // sueunSmptr->introduce();
+    return 0;
+}
+
+void Sueun::introduce(){
+    cout << "age: " << age << endl;
+}
 #endif

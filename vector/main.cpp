@@ -47,7 +47,7 @@ int main()
 }
 #endif
 
-#if ON
+#if OFF
 #include <iostream>
 #include <vector>
 #include <string>
@@ -78,7 +78,57 @@ int main(int argc, char **argv){
 
     for_each(vec.begin(), vec.end(), [](Person p){cout << p.getAge() << ", " << p.getName() << endl;} );
 
+
+    return 0;
+
+}
+
+#endif
+
+#if ON
+//람다를 이용한 정렬
+#include <iostream>
+#include <algorithm> //sort함수 쓸거임
+#include <vector>
+using namespace std;
+
+class Multiplier {
+    int first;
+    int second;
+public:
+    Multiplier (int f, int s){
+        first = f;
+        second = s;
+    }
+
+    int getResult()
+    { return first * second; }
+};
+
+int main(){
+    vector <Multiplier> multipleData; //vector multipleData 선언
+
+    for (int i=0; i<10; i++){
+        Multiplier multiple = Multiplier(rand ()%10, rand()%10);
+        multipleData.push_back(multiple);
+    }
+
+    cout << "정렬되지 않은 결과" << endl;
+    for (auto i= multipleData.begin(); i!=multipleData.end(); i++){
+        cout << i->getResult() << endl;
+    }
+
+    sort(multipleData.begin(), multipleData.end(), [](Multiplier& m1, Multiplier& m2)
+         { return m1.getResult() < m2.getResult(); });
+
+    cout << "정렬 결과" << endl;
+
+    for (auto k = multipleData.begin(); k!= multipleData.end(); k++)
+        cout << k->getResult() << endl;
+
     return 0;
 }
+
+
 
 #endif

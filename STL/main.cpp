@@ -69,7 +69,7 @@ int main(){
 }
 #endif
 
-#if ON
+#if OFF /* stack ex */
 
 #include <iostream>
 #include <stack>
@@ -87,6 +87,105 @@ int main(){
         cout << st.top() << " ";
         st.pop();
     }
+    return 0;
+}
+#endif
+
+#if OFF /* map 실습 */
+#include <iostream>
+#include <map>
+#include <string>
+using namespace std;
+
+int main(void){
+
+    map<string, int> m; //string - key, int - value
+    m.insert(make_pair("A", 10));
+    m.insert(make_pair("B", 20));
+    m.insert(make_pair("C", 30));
+    m.insert(make_pair("D", 40));
+    m.insert(make_pair("E", 50));
+    m["F"] = 100;
+
+    for (auto i = m.begin(); i!=m.end(); i++){
+        cout << "[" << i->first << " " << i->second << "]";
+    }
+    cout << endl;
+    auto i = m.find("A");
+    cout << i->first << " : " << i->second << endl;
+    m.insert(make_pair("E", 150));
+
+    for (auto i = m.begin(); i!=m.end(); i++){
+        cout << "[" << i->first << " " << i->second << "]";
+    }
+    return 0;
+}
+#endif
+
+#if OFF /* set Ex */
+#include <iostream>
+#include <set>
+using namespace std;
+
+int main(void){
+
+    set<int> s;
+    pair<set<int>::iterator, bool> pr;
+
+    s.insert(10);
+    s.insert(30);
+    s.insert(60);
+    s.insert(20);
+    s.insert(50);
+    pr = s.insert(40);
+
+    for (auto i = s.begin(); i != s.end(); i++)
+        cout << *i << " ";
+    cout << endl;
+
+    s.insert(pr.first, 55);
+
+    for (auto i = s.begin(); i != s.end(); i++)
+        cout << *i << " ";
+    cout << endl;
+
+    auto f = s.find(55);
+    if (f != s.end()){
+        cout << *f << endl;
+    }
+    return 0;
+}
+#endif
+
+#if OFF
+#include <iostream>
+#include <set>
+using namespace std;
+
+
+int main(void){
+
+    multiset<int> ms;
+    multiset<int>::iterator ms_iter;
+    ms.insert(10);
+    ms.insert(30);
+    ms.insert(60);
+    ms.insert(20);
+    ms.insert(50);
+    ms.insert(40);
+    ms_iter = ms.insert(40);
+
+    for (auto i = ms.begin(); i != ms.end(); i++)
+        cout << *i << " ";
+    cout << endl;
+
+    cout << "40 개수: " << ms.count(40) << endl;
+    auto f = ms.find(40);
+
+    if (f != ms.end()){
+        cout << *f << endl;
+    }
+
     return 0;
 }
 #endif
